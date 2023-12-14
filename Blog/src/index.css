@@ -83,3 +83,45 @@ b span{
 ul li{
   margin-bottom: 1rem;
 }
+.semibold{
+  font-weight: 600;
+}
+.text-middle{
+  padding-top: 1rem;
+  margin-left: 1rem;
+}
+.underline{
+  border-bottom: 1px solid black;
+}
+.border-dot{
+  border: 1px dotted black;
+  margin:1rem 0;
+}
+.float-left{
+  float: left;
+}
+.w-30{
+  width: 30%;
+}
+.border-b{
+  padding-bottom: 5rem;
+  border-bottom: 1px solid black;
+}
+.signup-card{
+  border: 1px solid black;
+  border-top: 3px solid black;
+}
+.sign-up{
+  padding: .3rem .5rem;
+  background-color: black;
+  color : white;
+  border: none;
+  text-align: center;
+}
+.input-signup{
+  border: 1.5px solid black;
+  border-radius: 0% !important;
+}
+.input-signup:focus{
+  outline: none;
+}
