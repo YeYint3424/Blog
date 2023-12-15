@@ -14,6 +14,7 @@ import nine from "../assets/imgs/nine.png";
 import ten from "../assets/imgs/ten.png";
 import eleven from "../assets/imgs/six.png";
 import twelve from "../assets/imgs/twelve.png";
+import eyes from "../assets/imgs/eyes.png";
 import List from "../components/List";
 import NewLetter from "../components/NewLetter";
 
@@ -220,12 +221,15 @@ const Article = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4">
+      <div className="eyes">
+        <img src={eyes} className="eyes-img" alt="eyes png" />
+      </div>
+      <div className="mt-5">
         <h1 className="text-3xl text-center mb-5">What to read next</h1>
-        <div className="row">
+        <div className="d-flex justify-content-md-between justify-content-lg-between justify-content-sm-center row">
           {list &&
             list.map((article, index) => (
-              <div className="col-md-6 col-lg-4 col-sm-12 mb-3" key={index}>
+              <div className="col-md-6 col-lg-4 col-sm-12 mb-3 mx-0" key={index}>
                 <List article={article} />
               </div>
             ))}
