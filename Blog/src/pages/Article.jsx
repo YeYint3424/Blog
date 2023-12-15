@@ -1,8 +1,75 @@
 import BigImg from "../components/BigImg";
 import pf from "../assets/imgs/pf.png";
 import bird from "../assets/imgs/bird.png";
+import Links from "../components/Links";
+import one from "../assets/imgs/one.png";
+import two from "../assets/imgs/two.png";
+import three from "../assets/imgs/three.png";
+import four from "../assets/imgs/four.png";
+import five from "../assets/imgs/five.png";
+import six from "../assets/imgs/six.png";
+import seven from "../assets/imgs/seven.png";
+import eight from "../assets/imgs/eight.png";
+import nine from "../assets/imgs/nine.png";
+import ten from "../assets/imgs/ten.png";
+import eleven from "../assets/imgs/six.png";
+import twelve from "../assets/imgs/twelve.png";
+import eyes from "../assets/imgs/eyes.png";
+import List from "../components/List";
+import NewLetter from "../components/NewLetter";
 
 const Article = () => {
+  const list = [
+    {
+      url: one,
+      text: "Here are some things you should know regarding how we work",
+    },
+    {
+      url: two,
+      text: "Granny gives everyone the finger, and other tips from OFFF Barcelona",
+    },
+    {
+      url: three,
+      text: "Here are some things you should know regarding how",
+    },
+    {
+      url: four,
+      text: "Here are some things you should know regarding",
+    },
+    {
+      url: five,
+      text: "Here are some things you should know okakkk",
+    },
+    {
+      url: six,
+      text: "Here are some things you should know",
+    },
+    {
+      url: seven,
+      text: "Here are some things you should know",
+    },
+    {
+      url: eight,
+      text: "Hello world, or, in other words, why this blog exists",
+    },
+    {
+      url: nine,
+      text: "Connecting artificial intelligence with digital product design",
+    },
+    {
+      url: ten,
+      text: "It’s all about finding the perfect balance",
+    },
+    {
+      url: eleven,
+      text: "Clients are part of the team",
+    },
+    {
+      url: twelve,
+      text: "Here are some things you should know regarding how we work",
+    },
+  ];
+
   return (
     <div>
       <div className="d-flex justify-content-center">
@@ -14,7 +81,7 @@ const Article = () => {
         </div>
       </div>
       <div className="d-flex justify-content-center mb-3">
-        <div className="col-lg-8 col-md-10 col-12">
+      <div className="w-90">
           <BigImg />
         </div>
       </div>
@@ -35,17 +102,7 @@ const Article = () => {
               </div>
             </div>
             <div className="col-lg-6 col-sm-12 d-flex justify-content-lg-end justify-content-center middle">
-              <div className="d-flex justify-content-lg-end justify-content-center middle text-center">
-                <div className="card px-3 py-2 m-2">
-                  <i className="fa-brands fa-facebook"></i>
-                </div>
-                <div className="card px-3 py-2 m-2">
-                  <i className="fa-brands fa-square-twitter"></i>
-                </div>
-                <div className="card px-3 py-2 m-2 d-lg-none">
-                  <i className="fa-brands fa-whatsapp"></i>
-                </div>
-              </div>
+              <Links />
             </div>
           </div>
           <div className="px-1 pt-3 mt-3 d-sm-none">
@@ -91,7 +148,8 @@ const Article = () => {
           </div>
         </div>
       </div>
-      <div className="d-flex justify-content-center middle">
+
+      <div className="d-flex justify-content-center middle border-b">
         <div className="col-lg-6 col-sm-12 px-4 pt-3">
           <p>
             Aenean pharetra quis lacus at viverra. Class aptent taciti sociosqu
@@ -118,9 +176,69 @@ const Article = () => {
             per inceptos himenaeos. Aliquam quis posuere ligula.{" "}
           </p>
           <p className="mb-0">Thanks for reading,</p>
-          <p className="mt-0">Mika</p>
+          <p className="mt-0 mb-3">Mika</p>
 
-          
+          <div className="d-md-none">
+            <p className="mb-0 semibold">share :</p>
+            <Links />
+          </div>
+          <div className="d-none d-md-flex">
+            <div className="card col-md-6">
+              <div className="d-flex justify-content-center middle text-md">
+                <i className="fa-brands fa-facebook"></i>
+                <p className="semibold text-center text-middle">
+                  Share on Facebook
+                </p>
+              </div>
+            </div>
+            <div className="card col-md-6">
+              <div className="d-flex justify-content-center middle text-md">
+                <i className="fa-brands fa-twitter"></i>
+                <p className="semibold text-center text-middle">
+                  Share on Twitter
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p className="semibold mt-4 text-md">
+            Tags: <span className="underline">product design</span>,{" "}
+            <span className="underline">culture</span>
+          </p>
+
+          <div className="border-dot"></div>
+
+          <div>
+            <div className="w-30 d-flex justify-content-center float-left">
+              <img src={pf} alt="profile" />
+            </div>
+            <p>
+              <span className="bold">Mika Matikainen</span> is a Design Founder
+              & Advisor, Berlin School of Creative Leadership Executive MBA
+              participant, Zippie advisor, Wolt co-founder, and Nordic Rose
+              stakeholder.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="eyes">
+        <img src={eyes} className="eyes-img" alt="eyes png" />
+      </div>
+      <div className="mt-5">
+        <h1 className="text-3xl text-center mb-5">What to read next</h1>
+        <div className="d-flex justify-content-md-between justify-content-lg-between justify-content-sm-center row">
+          {list &&
+            list.map((article, index) => (
+              <div className="col-md-6 col-lg-4 col-sm-12 mb-3 mx-0" key={index}>
+                <List article={article} />
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <div className="d-flex justify-content-center">
+        <div className="col-12 col-md-5 col-lg-4">
+          <NewLetter />
         </div>
       </div>
     </div>
