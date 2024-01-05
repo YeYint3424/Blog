@@ -4,7 +4,13 @@
   padding: 2rem;
   text-align: center;
 }
-
+.scroll-disable{
+  overflow-x: hidden;
+}
+.login-logo{
+  left: 5rem;
+  top : 1rem
+}
 .logo {
   height: 6em;
   padding: 1.5em;
