@@ -1,8 +1,8 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import login from "../assets/imgs/login.png";
 import Form from "../components/form";
 
-const Login = () => {
+const Auth = ({ type }) => {
   return (
     <div className="position-relative">
       <h2
@@ -39,15 +39,18 @@ const Login = () => {
           />
         </Col>
         <Col
-          className="d-flex justify-content-center align-items-center p-5 pt-0"
+          className="d-flex justify-content-center align-items-center px-5 pt-0"
           sm={12}
           lg={6}
         >
-          <Form type={"login"}/>
+          <Col sm={12} lg={10}>
+            {type == "login" && <Form type={"login"} />}
+            {type == "signUp" && <Form type={"signUp"} />}
+          </Col>
         </Col>
       </Row>
     </div>
   );
 };
 
-export default Login;
+export default Auth;

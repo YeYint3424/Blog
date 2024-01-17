@@ -155,3 +155,45 @@ ul li{
 .eyes-img{
   position: absolute;
 }
+
+.successful {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.successful-box{
+  backdrop-filter: blur(2px) grayscale(80%);
+  border-radius: 10px;
+  padding: 3rem;
+  background-color: rgba(0, 252, 34, 0.5);
+  color: white;
+}
+.side-list{
+  list-style: none;
+  padding: 7px 0px;
+  color: black;
+}
+.border-sidebar{
+  border-right: 1px solid #ccc;
+  min-height: 100vh;
+}
+.bolder{
+  font-weight: 700;
+}
+.acc-card{
+  bottom: 3px;
+}
+.w-95{
+  width: 93%;
+}
+.middle{
+  vertical-align: middle;
+}
+.border-bottom{
+  border-bottom: 1px solid #ccc;
+}
+.bg-light{
+  background-color: white !important;
+}
