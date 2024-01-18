@@ -1,6 +1,8 @@
 import React from "react";
-import { Col, Row, Table } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { PieChart, Pie, Cell, Label } from "recharts";
+import CommonTable from "../../components/common/CommonTable";
+import { tableBody, tableTitle } from "../../constants/admin/DashboardConst";
 
 const data = [
   { name: "Approve", value: 10 },
@@ -8,9 +10,55 @@ const data = [
   { name: "Reject", value: 5 },
 ];
 
-const total = data.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0);
+const total = data.reduce(
+  (accumulator, currentValue) => accumulator + currentValue.value,
+  0
+);
 
 const COLORS = ["#0c73f3", "#ff8600", "#f71213"];
+
+const fetchData = [
+  {
+    id: "1",
+    name: "Mg Mg",
+    date: "Dec 18 2023",
+    category: "IT",
+    status: "Approved",
+  },
+  {
+    id: "2",
+    name: "Mg YE Yint",
+    date: "Dec 1 2023",
+    category: "IT",
+    status: "Pending",
+  },
+  {
+    id: "3",
+    name: "Muuuu",
+    date: "Dec 1 2023",
+    category: "IT",
+    status: "Rejected",
+  },
+];
+const tbody = tableBody(fetchData);
+const bodyData = () =>
+  tbody.map((data, index) => (
+    <tr key={index}>
+      <td className="d-flex align-items-center">
+        <img
+          src="https://i.imgflip.com/73u9iv.jpg"
+          alt="user"
+          width={40}
+          height={40}
+        />
+        <span className="mx-5">{data.name}</span>
+      </td>
+      <td>{data.date}</td>
+      <td>{data.category}</td>
+      <td>{data.status}</td>
+      <td>{data.edit}</td>
+    </tr>
+  ));
 
 const Dashboard = () => {
   return (
@@ -42,8 +90,13 @@ const Dashboard = () => {
                   fill={COLORS[index % COLORS.length]}
                 />
               ))}
-              <Label value="Total" position="center" dy={-10}/>
-              <Label style={{fontWeight: "bold", color:'#0c73f3'}} value={total} position="center" dy={10}/>
+              <Label value="Total" position="center" dy={-10} />
+              <Label
+                style={{ fontWeight: "bold", color: "#0c73f3" }}
+                value={total}
+                position="center"
+                dy={10}
+              />
             </Pie>
           </PieChart>
         </Col>
@@ -87,75 +140,7 @@ const Dashboard = () => {
       <div className="bg-light w-100 pt-3 p-2 mb-0">
         <h5 className="px-3">Blog Status</h5>
       </div>
-      <Table title="Blog Status mt-0">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Date In</th>
-            <th>Category</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="d-flex align-items-center">
-              <img
-                src="https://i.imgflip.com/73u9iv.jpg"
-                alt="user"
-                width={40}
-                height={40}
-              />
-              <span className="mx-5"> user1</span>
-            </td>
-            <td>Dec 18 2023</td>
-            <td>IT</td>
-            <td style={{color:'#0c73f3'}}>Approve</td>
-          </tr>
-          <tr>
-            <td className="d-flex align-items-center">
-              <img
-                src="https://i.imgflip.com/73u9iv.jpg"
-                alt="user"
-                width={40}
-                height={40}
-              />
-              <span className="mx-5"> user1</span>
-            </td>
-            <td>Dec 18 2023</td>
-            <td>IT</td>
-            <td style={{color:'#0c73f3'}}>Approve</td>
-          </tr>
-          <tr>
-            <td className="d-flex align-items-center">
-              <img
-                src="https://i.imgflip.com/73u9iv.jpg"
-                alt="user"
-                width={40}
-                height={40}
-              />
-              <span className="mx-5"> user1</span>
-            </td>
-            <td>Dec 18 2023</td>
-            <td>IT</td>
-            <td style={{color:'#0c73f3'}}>Approve</td>
-          </tr>
-          <tr>
-            <td className="d-flex align-items-center">
-              <img
-                src="https://i.imgflip.com/73u9iv.jpg"
-                alt="user"
-                width={40}
-                height={40}
-              />
-              <span className="mx-5"> user1</span>
-            </td>
-            <td>Dec 18 2023</td>
-            <td>IT</td>
-            <td style={{color:'#0c73f3'}}>Approve</td>
-          </tr>
-          
-        </tbody>
-      </Table>
+      <CommonTable titles={tableTitle} bodyData={bodyData()} />
     </div>
   );
 };
