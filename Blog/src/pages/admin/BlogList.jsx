@@ -1,9 +1,13 @@
 import CommonTable from "../../components/common/CommonTable";
+import CommonModel from "../../components/common/CommonModel";
 import { tableBody, tableTitle } from "../../constants/admin/DashboardConst";
+import { modelLabel } from "../../constants/admin/DashboardConst";
+import { useState } from "react";
 
 const BlogList = () => {
-    
-const fetchData = [
+  const [appearModel, setAppearModel] = useState(false);
+
+  const fetchData = [
     {
       id: "1",
       name: "Mg Mg",
@@ -26,7 +30,7 @@ const fetchData = [
       status: "Rejected",
     },
   ];
-  const tbody = tableBody(fetchData);
+  const tbody = tableBody(fetchData, setAppearModel);
   const bodyData = () =>
     tbody.map((data, index) => (
       <tr key={index}>
@@ -45,10 +49,15 @@ const fetchData = [
         <td>{data.edit}</td>
       </tr>
     ));
-  
-    return ( 
-        <CommonTable titles={tableTitle} bodyData={bodyData()}/>
-     );
-}
- 
-export default BlogList;        
+
+  return (
+    <>
+      {appearModel && (
+        <CommonModel modelLabel={modelLabel} setAppearModel={setAppearModel} />
+      )}
+      <CommonTable titles={tableTitle} bodyData={bodyData()} />
+    </>
+  );
+};
+
+export default BlogList;

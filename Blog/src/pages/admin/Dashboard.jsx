@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { PieChart, Pie, Cell, Label } from "recharts";
 import CommonTable from "../../components/common/CommonTable";
-import { tableBody, tableTitle } from "../../constants/admin/DashboardConst";
-
+import { modelLabel, tableBody, tableTitle } from "../../constants/admin/DashboardConst";
+import CommonModel from "../../components/common/CommonModel";
 const data = [
   { name: "Approve", value: 10 },
   { name: "Pending", value: 7 },
@@ -40,29 +40,32 @@ const fetchData = [
     status: "Rejected",
   },
 ];
-const tbody = tableBody(fetchData);
-const bodyData = () =>
-  tbody.map((data, index) => (
-    <tr key={index}>
-      <td className="d-flex align-items-center">
-        <img
-          src="https://i.imgflip.com/73u9iv.jpg"
-          alt="user"
-          width={40}
-          height={40}
-        />
-        <span className="mx-5">{data.name}</span>
-      </td>
-      <td>{data.date}</td>
-      <td>{data.category}</td>
-      <td>{data.status}</td>
-      <td>{data.edit}</td>
-    </tr>
-  ));
+
 
 const Dashboard = () => {
+  const [appearModel, setAppearModel] = useState(false);
+  const tbody = tableBody(fetchData, setAppearModel);
+  const bodyData = () =>
+    tbody.map((data, index) => (
+      <tr key={index}>
+        <td className="d-flex align-items-center">
+          <img
+            src="https://i.imgflip.com/73u9iv.jpg"
+            alt="user"
+            width={40}
+            height={40}
+          />
+          <span className="mx-5">{data.name}</span>
+        </td>
+        <td>{data.date}</td>
+        <td>{data.category}</td>
+        <td>{data.status}</td>
+        <td>{data.edit}</td>
+      </tr>
+    ));
   return (
     <div>
+      {appearModel && <CommonModel modelLabel={modelLabel} setAppearModel={setAppearModel}/>}
       <Row className="m-0 p-0">
         <Col lg={6} className="m-0 p-0">
           <label>Blog List</label>
