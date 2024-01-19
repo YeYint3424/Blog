@@ -20,7 +20,7 @@ export default function StatusColor({ status }) {
     <>
       {status == "Approved" ? (
         <b style={{ color: "#0c73f3" }}>{status}</b>
-      ) : status == "bending" ? (
+      ) : status == "Pending" ? (
         <b style={{ color: "#ff8600" }}>{status}</b>
       ) : (
         <b style={{ color: "#f71213" }}>{status}</b>

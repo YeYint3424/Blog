@@ -4,9 +4,9 @@ import NavBar from "./NavBar";
 
 const Components = () => {
   return (
-    <div>
+    <div className="bg-back">
       <NavBar />
-      <div className="mt-4rem">
+      <div className="pt-4rem" style={{backgroundColor: '#efefef'}}>
         <Outlet />
       </div>
       <Footer />
