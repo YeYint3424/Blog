@@ -3,13 +3,13 @@ import { deleteButton, editButton } from "../../components/common/CommonButton";
 
 export const tableTitle = ["User", "Date In", "Category", "Status", ""];
 
-export const tableBody = (fetchData) => {
+export const tableBody = (fetchData, setAppearModel) => {
   return fetchData.map((data) => ({
     name: <NameLink name={data.name} />,
     date: data.date,
     category: data.category,
     status: <StatusColor status={data.status} />,
-    edit: editButton({ id: data.id }),
+    edit: editButton({ id: data.id ,setAppearModel}),
   }));
 };
 
@@ -36,3 +36,5 @@ export const NameLink = ({ name }) => {
     </Link>
   );
 };
+
+export const modelLabel = ['Approved', 'Rejected']

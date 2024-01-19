@@ -25,3 +25,5 @@ export default function UserStatusColor({ status }) {
     </>
   );
 }
+
+export const modelLabel = ['Active', 'Inactive']
