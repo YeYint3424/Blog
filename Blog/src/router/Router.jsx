@@ -12,6 +12,7 @@ import UserList from "../pages/admin/UserList";
 import Management from "../pages/admin/Management";
 import Category from "../pages/admin/Category";
 import BlockList from "../pages/admin/BlockList";
+import Profile from "../pages/user/Profile";
 
 function Router() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function Router() {
         {
           path: "/",
           element: <Blog />,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
         {
           path: "/article",

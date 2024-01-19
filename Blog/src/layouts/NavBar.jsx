@@ -4,8 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 
 const NavBar = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary p-0 absolute">
-      <Container>
+    <Navbar expand="lg" className="p-0 absolute" style={{backgroundColor: '#efefef', borderBottom: '1px solid #ccc' }}>
+      <Container >
         <Navbar.Brand className="text-xl p-0" href="#home">
           NORDIC ROSE
         </Navbar.Brand>
