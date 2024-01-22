@@ -13,6 +13,7 @@ import Management from "../pages/admin/Management";
 import Category from "../pages/admin/Category";
 import BlockList from "../pages/admin/BlockList";
 import Profile from "../pages/user/Profile";
+import BlogDetail from "../pages/blog/BlogDetail";
 
 function Router() {
   const router = createBrowserRouter([
@@ -25,14 +26,19 @@ function Router() {
           element: <Blog />,
         },
         {
-          path: "/profile",
-          element: <Profile />,
-        },
-        {
           path: "/article",
           element: <Article />,
         },
       ],
+    },
+    
+    {
+      path: "/user/profile",
+      element: <Profile />,
+    },
+    {
+      path: "/blog/:blogId",
+      element: <BlogDetail />,
     },
     {
       path: "/signin",
