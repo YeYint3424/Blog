@@ -12,6 +12,17 @@
   font-size: 20px;
   border-radius: 5px;
 }
+.inputButton {
+  display: block;
+  width: 100%;
+  padding: 10px 30px !important;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: white !important;
+}
 .text-20{
   font-size: 20px !important;
 }
@@ -170,10 +181,21 @@ ul li{
   background-color: rgba(0, 252, 34, 0.5);
   color: white;
 }
+.fail-box{
+  backdrop-filter: blur(2px) grayscale(80%);
+  border-radius: 10px;
+  padding: 3rem;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
+}
 .side-list{
   list-style: none;
   padding: 7px 0px;
   color: black;
+}
+.border-Left{
+  border-left: 1px solid #ccc;
+  min-height: 100vh;
 }
 .border-sidebar{
   border-right: 1px solid #ccc;
@@ -248,4 +270,34 @@ ul li{
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
+}
+.navBar-client {
+  text-align: center;
+  color: black !important;
+  font-weight: 500;
+  padding: 3px 0;
+  width: 7rem !important;
+}
+
+.navBar-client-active {
+  border-radius: 40px;
+  text-align: center;
+  color: black !important;
+  font-weight: 500;
+  width: 7rem !important;
+  padding: 3px 0;
+  border: 1px solid black !important;
+}
+.navBar-button{
+  border-radius: 40px;
+  text-align: center;
+  font-weight: 500;
+  width: 7rem !important;
+  padding: 3px 0;
+  border: 1px solid black !important;
+}
+.sideBar-admin{
+  background-color: #0c73f3;
+  color: white !important;
+  border-radius: 5px;
 }

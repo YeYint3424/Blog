@@ -1,11 +1,35 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { Api } from "../../constants/API";
+import axios from "axios";
 
-const CommonModel = ({ modelLabel, setAppearModel }) => {
+const CommonModel = ({ modelLabel, setAppearModel, blogId }) => {
   const closeHandler = () => {
     setAppearModel(false);
   };
+  const handleApproved = async (blogId) => {
+    try {
+      const status = await axios.patch(`${Api}/admin/blog/change/${blogId}`, {
+        status: "approved",
+      });
+      console.log(status.data);
+      setAppearModel(false);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  const handleRejected = async (blogId) => {
+    try {
+      const status = await axios.patch(`${Api}/admin/blog/change/${blogId}`, {
+        status: "rejected",
+      });
+      setAppearModel(false);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div
       className="modal show"
@@ -28,18 +52,24 @@ const CommonModel = ({ modelLabel, setAppearModel }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection: "column"
+            flexDirection: "column",
           }}
         >
           {modelLabel.map((title) =>
             title === "Approved" ? (
-              <button className="btn btn-primary btn-model">{title}</button>
-            ) : title === "Rejected" ? (
-              <button className="btn btn-danger btn-model">{title}</button>
-            ) : title === "Active" ? (
-              <button className="btn btn-success btn-model">{title}</button>
+              <button
+                className="btn btn-primary btn-model"
+                onClick={() => handleApproved(blogId)}
+              >
+                {title}
+              </button>
             ) : (
-              <button className="btn btn-danger btn-model">{title}</button>
+              <button
+                className="btn btn-danger btn-model"
+                onClick={() => handleRejected(blogId)}
+              >
+                {title}
+              </button>
             )
           )}
 

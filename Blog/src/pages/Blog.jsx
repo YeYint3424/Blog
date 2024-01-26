@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import one from "../assets/imgs/one.png";
 import two from "../assets/imgs/two.png";
 import three from "../assets/imgs/three.png";
@@ -13,59 +13,22 @@ import eleven from "../assets/imgs/six.png";
 import twelve from "../assets/imgs/twelve.png";
 import List from "../components/List";
 import BigImg from "../components/BigImg";
+import axios from "axios";
 
 const Blog = () => {
+const [list,setList]= useState()
 
-  const list = [
-    {
-      url: one,
-      text: "Here are some things you should know regarding how we work"
-    },
-    {
-      url: two,
-      text: "Granny gives everyone the finger, and other tips from OFFF Barcelona"
-    },
-    {
-      url: three,
-      text: "Here are some things you should know regarding how"
-    },
-    {
-      url: four,
-      text: "Here are some things you should know regarding"
-    },
-    {
-      url: five,
-      text: "Here are some things you should know okakkk"
-    },
-    {
-      url: six,
-      text: "Here are some things you should know"
-    },
-    {
-      url: seven,
-      text: "Here are some things you should know"
-    },
-    {
-      url: eight,
-      text: "Hello world, or, in other words, why this blog exists"
-    },
-    {
-      url: nine,
-      text: "Connecting artificial intelligence with digital product design"
-    },
-    {
-      url: ten,
-      text: "It’s all about finding the perfect balance"
-    },
-    {
-      url: eleven,
-      text: "Clients are part of the team"
-    },
-    {
-      url: twelve,
-      text: "Here are some things you should know regarding how we work"
+  useEffect(()=>{
+    const fetchData = async() => {
+      try {
+        const response = await axios.get('http://localhost:8888/api/v1/blog/home-blog')
+        setList(response.data)
+      } catch (error) {
+        console.log(error);
+      }
     }
-  ]
+    fetchData()
+  },[])
 
   return (
     <div className="container-fluid">

@@ -1,8 +1,9 @@
 import { Col, Row } from "react-bootstrap";
 import login from "../assets/imgs/login.png";
-import Form from "../components/form";
+import FormAuth from "../components/form";
+import { Outlet } from "react-router-dom";
 
-const Auth = ({ type }) => {
+const Auth = () => {
   return (
     <div className="position-relative">
       <h2
@@ -44,8 +45,7 @@ const Auth = ({ type }) => {
           lg={6}
         >
           <Col sm={12} lg={10}>
-            {type == "login" && <Form type={"login"} />}
-            {type == "signUp" && <Form type={"signUp"} />}
+            <Outlet />
           </Col>
         </Col>
       </Row>

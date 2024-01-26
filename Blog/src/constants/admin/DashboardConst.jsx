@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import { deleteButton, editButton } from "../../components/common/CommonButton";
 
-export const tableTitle = ["User", "Date In", "Category", "Status", ""];
+export const tableTitle = ["Title","Created By", "Created-date", "Category", "Status", ""];
 
-export const tableBody = (fetchData, setAppearModel) => {
-  return fetchData.map((data) => ({
-    name: <NameLink name={data.name} />,
-    date: data.date,
-    category: data.category,
-    status: <StatusColor status={data.status} />,
-    edit: editButton({ id: data.id ,setAppearModel}),
-  }));
+export const tableBody = (fetchData, setAppearModel, setBlogId) => {
+  return fetchData.map((data) => {
+    return {
+      title:<NameLink name={data.title} blogId={data.id} />,
+      name: data.username,
+      date: data.date,
+      category: data.category,
+      status: <StatusColor status={data.status} />,
+      edit:
+        data.status === "pending"
+          ? editButton({ id: data.id, setAppearModel, setBlogId })
+          : null,
+    };
+  });
 };
 
 import React from "react";
@@ -18,9 +24,9 @@ import React from "react";
 export default function StatusColor({ status }) {
   return (
     <>
-      {status == "Approved" ? (
+      {status == "approved" ? (
         <b style={{ color: "#0c73f3" }}>{status}</b>
-      ) : status == "Pending" ? (
+      ) : status == "pending" ? (
         <b style={{ color: "#ff8600" }}>{status}</b>
       ) : (
         <b style={{ color: "#f71213" }}>{status}</b>
@@ -29,12 +35,12 @@ export default function StatusColor({ status }) {
   );
 }
 
-export const NameLink = ({ name }) => {
+export const NameLink = ({ name, blogId }) => {
   return (
-    <Link to={""}>
-      <b style={{textDecoration: 'underline'}}>{name}</b>
+    <Link to={`/article/${blogId}`}>
+      <b style={{ textDecoration: "underline" }}>{name}</b>
     </Link>
   );
 };
 
-export const modelLabel = ['Approved', 'Rejected']
+export const modelLabel = ["Approved", "Rejected"];

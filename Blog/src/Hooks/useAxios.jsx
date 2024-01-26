@@ -5,17 +5,30 @@ import { useState } from "react";
 export const useAxios = () => {
   const [loading, setLoading] = useState(false);
 
-  const sendRequest = (endpoint, data) => {
+  const postRequest = (endpoint, data) => {
     setLoading(true);
 
     return axios
       .post(`${Api}${endpoint}`, data)
       .then((res) => {
-        console.log(res);
         return res.data;
       })
       .catch((err) => {
-        console.log(err);
+        throw err; 
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  const getRequest = (endpoint) => {
+    setLoading(true);
+
+    return axios
+      .get(`${Api}${endpoint}`)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
         throw err; 
       })
       .finally(() => {
@@ -23,5 +36,5 @@ export const useAxios = () => {
       });
   };
 
-  return { sendRequest, loading };
+  return { postRequest, loading, getRequest };
 };

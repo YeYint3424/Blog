@@ -1,62 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { PieChart, Pie, Cell, Label } from "recharts";
 import CommonTable from "../../components/common/CommonTable";
-import { modelLabel, tableBody, tableTitle } from "../../constants/admin/DashboardConst";
+import {
+  modelLabel,
+  tableBody,
+  tableTitle,
+} from "../../constants/admin/DashboardConst";
 import CommonModel from "../../components/common/CommonModel";
-const data = [
-  { name: "Approve", value: 10 },
-  { name: "Pending", value: 7 },
-  { name: "Reject", value: 5 },
-];
-
-const total = data.reduce(
-  (accumulator, currentValue) => accumulator + currentValue.value,
-  0
-);
+import axios from "axios";
+import { Api } from "../../constants/API";
+import { useSelector } from "react-redux";
+import { selectAccessToken } from "../../appredux/tokenSlice";
 
 const COLORS = ["#0c73f3", "#ff8600", "#f71213"];
 
-const fetchData = [
-  {
-    id: "1",
-    name: "Mg Mg",
-    date: "Dec 18 2023",
-    category: "IT",
-    status: "Approved",
-  },
-  {
-    id: "2",
-    name: "Mg YE Yint",
-    date: "Dec 1 2023",
-    category: "IT",
-    status: "Pending",
-  },
-  {
-    id: "3",
-    name: "Muuuu",
-    date: "Dec 1 2023",
-    category: "IT",
-    status: "Rejected",
-  },
-];
-
-
 const Dashboard = () => {
+  const [tableData, setTableData] = useState([]);
   const [appearModel, setAppearModel] = useState(false);
-  const tbody = tableBody(fetchData, setAppearModel);
+  const [pieData, setPieData] = useState([])
+  const token = useSelector(selectAccessToken)
+  const [blogId, setBlogId] = useState()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${Api}/admin/blog-table`);
+
+        const tbody = tableBody(response.data, setAppearModel, setBlogId);
+        setTableData(tbody);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    const fetchPie = async() =>{
+      try {
+        const response = await axios.get(`${Api}/admin/blog-count`);
+        setPieData(response.data);
+      } catch (error) {
+        console.error("Error fetching data count:", error);
+      }
+    }
+    fetchPie()
+    fetchData();
+  }, [appearModel,token]);
+
+  const total = tableData.length;
+
+  console.log(pieData);
   const bodyData = () =>
-    tbody.map((data, index) => (
+    tableData.map((data, index) => (
       <tr key={index}>
-        <td className="d-flex align-items-center">
-          <img
-            src="https://i.imgflip.com/73u9iv.jpg"
-            alt="user"
-            width={40}
-            height={40}
-          />
-          <span className="mx-5">{data.name}</span>
-        </td>
+        <td>{data.title}</td>
+        <td>{data.name}</td>
         <td>{data.date}</td>
         <td>{data.category}</td>
         <td>{data.status}</td>
@@ -65,7 +60,9 @@ const Dashboard = () => {
     ));
   return (
     <div>
-      {appearModel && <CommonModel modelLabel={modelLabel} setAppearModel={setAppearModel}/>}
+      {appearModel && (
+        <CommonModel modelLabel={modelLabel} blogId={blogId} setAppearModel={setAppearModel} />
+      )}
       <Row className="m-0 p-0">
         <Col lg={6} className="m-0 p-0">
           <label>Blog List</label>
@@ -78,7 +75,7 @@ const Dashboard = () => {
         <Col className="m-0 p-0" lg={3}>
           <PieChart width={200} height={200}>
             <Pie
-              data={data}
+              data={pieData}
               cx={100}
               cy={100}
               innerRadius={60}
@@ -87,7 +84,7 @@ const Dashboard = () => {
               paddingAngle={5}
               dataKey="value"
             >
-              {data.map((entry, index) => (
+              {pieData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
@@ -104,7 +101,7 @@ const Dashboard = () => {
           </PieChart>
         </Col>
         <Col className="m-0 p-0" lg={3}>
-          {data.map((entry, index) => (
+          {pieData.map((entry, index) => (
             <div
               key={index}
               className="d-flex align-items-center justify-content-start"
@@ -121,7 +118,7 @@ const Dashboard = () => {
           ))}
         </Col>
         <Col className="m-0 p-0" lg={6}>
-          {data.map((entry, index) => (
+          {pieData.map((entry, index) => (
             <div
               key={index}
               className="d-flex align-items-center justify-content-start"
